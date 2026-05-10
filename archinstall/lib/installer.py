@@ -61,7 +61,7 @@ from archinstall.lib.plugins import plugins
 from archinstall.lib.translationhandler import tr
 
 # Any package that the Installer() is responsible for (optional and the default ones)
-# https://github.com/archlinux/archinstall/issues/4368
+# https://github.com/palazik/archinstall/issues/4368
 # mkinitcpio is listed explicitly so pacstrap installs it deterministically. Otherwise
 # pacman picks the first initramfs provider from the host's pacman.conf, which on non-Arch
 # hosts (EndeavourOS prefers dracut, etc.) breaks the installer's mkinitcpio() and
@@ -146,7 +146,7 @@ class Installer:
 			# We avoid printing /mnt/<log path> because that might confuse people if they note it down
 			# and then reboot, and an identical log file will be found in the ISO medium anyway.
 			print(tr('[!] A log file has been created here: {}').format(logger.path))
-			print(tr('Please submit this issue (and file) to https://github.com/archlinux/archinstall/issues'))
+			print(tr('Please submit this issue (and file) to https://github.com/palazik/archinstall/issues'))
 
 			# Return None to propagate the exception
 			return None
@@ -166,7 +166,7 @@ class Installer:
 				warn(f' - {step}')
 
 			warn(f'Detailed error logs can be found at: {logger.directory}')
-			warn('Submit this zip file as an issue to https://github.com/archlinux/archinstall/issues')
+			warn('Submit this zip file as an issue to https://github.com/palazik/archinstall/issues')
 
 			self.sync_log_to_install_medium()
 			return False
@@ -875,7 +875,7 @@ class Installer:
 		if (pkg := fs_type.installation_pkg) is not None:
 			self._base_packages.append(pkg)
 
-		# https://github.com/archlinux/archinstall/issues/1837
+		# https://github.com/palazik/archinstall/issues/1837
 		if fs_type == FilesystemType.BTRFS:
 			self._disable_fstrim = True
 
@@ -950,9 +950,9 @@ class Installer:
 		# having no adverse effect on other devices. Most distributions enable
 		# periodic TRIM by default.
 		#
-		# https://github.com/archlinux/archinstall/issues/880
-		# https://github.com/archlinux/archinstall/issues/1837
-		# https://github.com/archlinux/archinstall/issues/1841
+		# https://github.com/palazik/archinstall/issues/880
+		# https://github.com/palazik/archinstall/issues/1837
+		# https://github.com/palazik/archinstall/issues/1841
 		if not self._disable_fstrim:
 			self.enable_periodic_trim()
 
@@ -1182,7 +1182,7 @@ class Installer:
 			kernel_parameters = self._get_kernel_params_partition(root, id_root, partuuid)
 
 		# Zswap should be disabled when using zram.
-		# https://github.com/archlinux/archinstall/issues/881
+		# https://github.com/palazik/archinstall/issues/881
 		if self._zram_enabled:
 			kernel_parameters.append('zswap.enabled=0')
 
@@ -2026,7 +2026,7 @@ class Installer:
 				error(f'Invalid keyboard language specified: {language}')
 				return False
 
-			# In accordance with https://github.com/archlinux/archinstall/issues/107#issuecomment-841701968
+			# In accordance with https://github.com/palazik/archinstall/issues/107#issuecomment-841701968
 			# Setting an empty keymap first, allows the subsequent call to set layout for both console and x11.
 			with Boot(self.target) as session:
 				os.system('systemd-run --machine=archinstall --pty localectl set-keymap ""')  # type: ignore[deprecated]

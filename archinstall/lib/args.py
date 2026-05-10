@@ -71,7 +71,7 @@ class ArchConfig:
 	app_config: ApplicationConfiguration | None = None
 	auth_config: AuthenticationConfiguration | None = None
 	swap: ZramConfiguration | None = None
-	hostname: str = 'archlinux'
+	hostname: str = 'kernos'
 	kernels: list[str] = field(default_factory=lambda: [DEFAULT_KERNEL.value])
 	ntp: bool = True
 	packages: list[str] = field(default_factory=list)
