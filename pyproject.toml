@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "archinstall"
 version = "4.3"
-description = "Arch Linux installer - guided, templates etc."
+description = "KernOS installer - based on archinstall."
 authors = [
     {name = "Anton Hvornum", email = "anton@hvornum.se"},
 ]
@@ -29,7 +29,7 @@ dependencies = [
 [project.urls]
 Home = "https://archlinux.org"
 Documentation = "https://archinstall.readthedocs.io/"
-Source = "https://github.com/archlinux/archinstall"
+Source = "https://github.com/palazik/archinstall"
 
 [project.optional-dependencies]
 log = ["systemd_python==235"]
@@ -45,6 +45,7 @@ doc = ["sphinx"]
 
 [project.scripts]
 archinstall = "archinstall.main:main"
+kerninstall = "archinstall.main:main"
 
 [tool.setuptools.dynamic]
 readme = {file = ["README.rst", "USAGE.rst"]}

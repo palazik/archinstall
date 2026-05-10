@@ -57,7 +57,7 @@ def _fetch_arch_db() -> bool:
 		if 'could not resolve host' in str(e).lower():
 			error('Most likely due to a missing network connection or DNS issue.')
 
-		error('Run archinstall --debug and check /var/log/kernos-installer/install.log for details.')
+		error('Run kerninstall --debug and check /var/log/kernos-installer/install.log for details.')
 
 		debug(f'Failed to sync KernOS package database: {e}')
 		return False
@@ -160,7 +160,7 @@ def _error_message(exc: Exception) -> None:
 		https://github.com/palazik/archinstall and include the log file "/var/log/kernos-installer/install.log".
 
 		Hint: To upload the log and get a shareable URL, run
-		archinstall share-log
+		kerninstall share-log
 		"""
 	)
 	warn(text)
