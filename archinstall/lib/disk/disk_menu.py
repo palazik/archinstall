@@ -728,7 +728,7 @@ async def suggest_multi_disk_layout(
 	if home_device is None or root_device is None:
 		text = tr('The selected drives do not have the minimum capacity required for an automatic suggestion\n')
 		text += tr('Minimum capacity for /home partition: {}GiB\n').format(min_home_partition_size.format_size(Unit.GiB))
-		text += tr('Minimum capacity for Arch Linux partition: {}GiB').format(desired_root_partition_size.format_size(Unit.GiB))
+		text += tr('Minimum capacity for KernOS partition: {}GiB').format(desired_root_partition_size.format_size(Unit.GiB))
 
 		_ = await Notify(text).show()
 		return []

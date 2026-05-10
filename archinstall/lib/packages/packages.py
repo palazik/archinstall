@@ -76,7 +76,7 @@ def list_available_packages(
 	try:
 		Pacman.run('-Sy')
 	except Exception as e:
-		debug(f'Failed to sync Arch Linux package database: {e}')
+		debug(f'Failed to sync KernOS package database: {e}')
 
 	for line in Pacman.run('-S --info'):
 		dec_line = line.decode().rstrip()

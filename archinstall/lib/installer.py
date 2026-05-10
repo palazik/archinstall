@@ -219,7 +219,7 @@ class Installer:
 		# time.sleep(1)
 
 		if not skip_wkd:
-			info(tr('Waiting for Arch Linux keyring sync (archlinux-keyring-wkd-sync) to complete.'))
+			info(tr('Waiting for KernOS keyring sync (archlinux-keyring-wkd-sync) to complete.'))
 			# Wait for the timer to kick in
 			while self._service_started('archlinux-keyring-wkd-sync.timer') is None:
 				time.sleep(1)
@@ -696,7 +696,7 @@ class Installer:
 		return False
 
 	def activate_time_synchronization(self) -> None:
-		info('Activating systemd-timesyncd for time synchronization using Arch Linux and ntp.org NTP servers')
+		info('Activating systemd-timesyncd for time synchronization using KernOS and ntp.org NTP servers')
 		self.enable_service('systemd-timesyncd')
 
 	def enable_espeakup(self) -> None:
@@ -1217,7 +1217,7 @@ class Installer:
 			f"""\
 			# Created by: archinstall
 			# Created on: {self.init_time}
-			title	Arch Linux ({{kernel}})
+			title	KernOS ({{kernel}})
 			linux	/vmlinuz-{{kernel}}
 			initrd	/initramfs-{{kernel}}.img
 			options {' '.join(self._get_kernel_params(root))}
@@ -1516,7 +1516,7 @@ class Installer:
 						' --create'
 						f' --disk {parent_dev_path}'
 						f' --part {efi_partition.partn}'
-						' --label "Arch Linux Limine Bootloader"'
+						' --label "KernOS Limine Bootloader"'
 						f" --loader '{loader_path}'"
 						' --unicode'
 						' --verbose',
@@ -1580,7 +1580,7 @@ class Installer:
 					f'path: boot():/EFI/Linux/arch-{kernel}.efi',
 					f'cmdline: {kernel_params}',
 				]
-				config_contents += f'\n/Arch Linux ({kernel})\n'
+				config_contents += f'\n/KernOS ({kernel})\n'
 				config_contents += '\n'.join(f'    {it}' for it in entry) + '\n'
 			else:
 				entry = [
@@ -1589,7 +1589,7 @@ class Installer:
 					f'cmdline: {kernel_params}',
 					f'module_path: {path_root}:/initramfs-{kernel}.img',
 				]
-				config_contents += f'\n/Arch Linux ({kernel})\n'
+				config_contents += f'\n/KernOS ({kernel})\n'
 				config_contents += '\n'.join(f'    {it}' for it in entry) + '\n'
 
 		config_path.write_text(config_contents)
@@ -1636,7 +1636,7 @@ class Installer:
 			'--part',
 			str(boot_partition.partn),
 			'--label',
-			'Arch Linux ({kernel})',
+			'KernOS ({kernel})',
 			'--loader',
 			loader,
 			'--unicode',
@@ -1703,7 +1703,7 @@ class Installer:
 
 		for kernel in self.kernels:
 			if uki_enabled:
-				entry = f'"Arch Linux ({kernel}) UKI" "{kernel_params}"'
+				entry = f'"KernOS ({kernel}) UKI" "{kernel_params}"'
 			else:
 				if boot_on_root:
 					# Kernels are in /boot subdirectory of root filesystem
@@ -1721,7 +1721,7 @@ class Installer:
 				else:
 					# Kernels are at root of their partition (ESP or separate boot partition)
 					initrd_path = f'initrd=\\initramfs-{kernel}.img'
-				entry = f'"Arch Linux ({kernel})" "{kernel_params} {initrd_path}"'
+				entry = f'"KernOS ({kernel})" "{kernel_params} {initrd_path}"'
 
 			config_contents.append(entry)
 

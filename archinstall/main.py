@@ -1,4 +1,4 @@
-# Arch Linux installer - guided, templates etc.
+# KernOS installer - guided, templates etc.
 
 import importlib
 import os
@@ -49,17 +49,17 @@ def _check_online(wifi_handler: WifiHandler | None = None) -> bool:
 
 
 def _fetch_arch_db() -> bool:
-	info('Fetching Arch Linux package database...')
+	info('Fetching KernOS package database...')
 	try:
 		Pacman.run('-Sy')
 	except Exception as e:
-		error('Failed to sync Arch Linux package database.')
+		error('Failed to sync KernOS package database.')
 		if 'could not resolve host' in str(e).lower():
 			error('Most likely due to a missing network connection or DNS issue.')
 
-		error('Run archinstall --debug and check /var/log/archinstall/install.log for details.')
+		error('Run archinstall --debug and check /var/log/kernos-installer/install.log for details.')
 
-		debug(f'Failed to sync Arch Linux package database: {e}')
+		debug(f'Failed to sync KernOS package database: {e}')
 		return False
 
 	return True
@@ -156,8 +156,8 @@ def _error_message(exc: Exception) -> None:
 
 	text = textwrap.dedent(
 		"""\
-		Archinstall experienced the above error. If you think this is a bug, please report it to
-		https://github.com/archlinux/archinstall and include the log file "/var/log/archinstall/install.log".
+		KernOS installer experienced the above error. If you think this is a bug, please report it to
+		https://github.com/palazik/archinstall and include the log file "/var/log/kernos-installer/install.log".
 
 		Hint: To upload the log and get a shareable URL, run
 		archinstall share-log
